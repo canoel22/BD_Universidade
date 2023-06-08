@@ -25,10 +25,8 @@ while(escolha_inicial != 0):
         
     escolha_inicial = int(input("\nDigite sua escolha: "))
     if(escolha_inicial == 1):
-        #Cadastro(conexao, cur) #leva ao menu dos cadastros
-        print("opção 1")
-
-            
+        Cadastro(conexao, cur) #leva ao menu dos cadastros
+ 
     if(escolha_inicial == 2):
         #Notas(conexao, cur) #chama a função das notas
         print("opção 2")

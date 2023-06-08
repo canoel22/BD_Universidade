@@ -1,8 +1,8 @@
 from Cadastro.Cadastros import *
 import os
 
-#FUNÇÃO DO MENU PARA LOGIN OU CADASTRO
-def Usuario(conexao, cur):
+#--------------------- menu de cadastros --------------------------------#
+def Cadastro(conexao, cur):
     escolha_usuario = 1
     while(escolha_usuario != 0):
         os.system('clear')

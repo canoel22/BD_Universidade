@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS setores (
 );
 
 CREATE TABLE IF NOT EXISTS funcionarios (
-    cpf VARCHAR(11) PRIMARY KEY AUTO_INCREMENT,
+    cpf INT(11) PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     endereco VARCHAR(100) NOT NULL,
     salario FLOAT NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS cursos (
 );
 
 CREATE TABLE IF NOT EXISTS professores (
-    cpf VARCHAR(11) PRIMARY KEY AUTO_INCREMENT,
+    cpf INT(11) PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
     endereco VARCHAR(100) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS professores (
 );
 
 CREATE TABLE IF NOT EXISTS alunos (
-    cpf VARCHAR(11) PRIMARY KEY AUTO_INCREMENT,
+    cpf INT(11) PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
     endereco VARCHAR(100) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS alunos (
 CREATE TABLE IF NOT EXISTS disciplinas (
     cod_disciplina INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
-    cpf_professor VARCHAR(11) NOT NULL,
+    cpf_professor INT(11) NOT NULL,
     CONSTRAINT cpf_professor_fk FOREIGN KEY (cpf_professor) REFERENCES professores(cpf) ON DELETE CAsCADE
 );
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS cursos_disciplinas (
 
 CREATE TABLE IF NOT EXISTS inscritos (
     cod_disciplina INT NOT NULL,
-    cpf_aluno VARCHAR(11) NOT NULL,
+    cpf_aluno INT(11) NOT NULL,
     nota FLOAT NOT NULL DEFAULT 0,
     vez INT NOT NULL DEFAULT 1,
     CONSTRAINT cod_disciplina_fk2 FOREIGN KEY (cod_disciplina) REFERENCES disciplinas(cod_disciplina),
