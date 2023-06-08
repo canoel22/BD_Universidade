@@ -164,4 +164,12 @@ def CadastroDisc(conexao, cur):
         print("\nERRO: Setor não cadastrado!") #Mensagem de erro pra setor não encontrado
         input("Pressione ENTER para voltar.")
         return
+    
+    sql = "INSERT INTO disciplinas (cod_disc, nome, cpfProf) VALUES ( %s, %s, %s)" #Insere na tabela setores
+    data = (cod_disc, nome, cpfProf) #Utiliza os dados do insert
+    
+    cur.execute(sql, data) #Executa o comando(sql+data)
+    conexao.commit() #salva a alteração no banco
 
+    print("\nCadastrado com sucesso!")
+    input("Pressione ENTER para voltar.")
