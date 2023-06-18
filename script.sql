@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS funcionarios (
 CREATE TABLE IF NOT EXISTS cursos (
     cod_curso INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
-    ano_inicio DATETIME NOT NULL
+    ano_inicio INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS professores (

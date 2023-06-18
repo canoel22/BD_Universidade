@@ -1,0 +1,42 @@
+from Informacoes.Informacoes import *
+import os
+
+#--------------------- menu de cadastros --------------------------------#
+def Cadastro(conexao, cur):
+    escolha_usuario = 1
+    while(escolha_usuario != 0):
+        os.system('clear')
+        print("-> Informações <-\n")
+        print("0. Voltar")
+        print("1. Turma com mais alunos do campus")
+        print("2. Quantidade de professores ativos em cada curso")
+        print("3. Média salarial dos professores")
+        print("4. Jubilados")
+        print("5. Folha de pagamento mensal")
+        print("6. Média final das disciplinas de um professor ")
+        print("7. Em quantos cursos cada professor trabalha ")
+        print("8. Professor mais antigo da instituição ")
+        print("9. Número total de alunos por curso ")
+        print("10. Disciplina com maior taxa de aprovação/reprovação ")
+        
+        escolha_usuario = int(input("\nDigite sua escolha: "))
+        if(escolha_usuario == 1):
+            TurmaCheia(conexao, cur)
+        if(escolha_usuario == 2):
+            ProfsAtivos(conexao, cur)
+        if(escolha_usuario == 3):
+            MediaSalarial(conexao, cur)
+        if(escolha_usuario == 4):
+            Jubilados(conexao, cur)
+        if(escolha_usuario == 5):
+            FolhaDePagamento(conexao, cur)
+        if(escolha_usuario == 6):
+            MediaFinal(conexao, cur)
+        if(escolha_usuario == 7):
+            CursosPorProf(conexao, cur)
+        if(escolha_usuario == 8):
+            ProfAntigo(conexao, cur)
+        if(escolha_usuario == 9):
+            AlunoPorCurso(conexao, cur)
+        if(escolha_usuario == 10):
+            TaxaDisciplina(conexao, cur)

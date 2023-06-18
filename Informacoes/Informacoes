@@ -1,0 +1,54 @@
+from getpass import getpass
+from Informacoes.MenuInformacoes import *
+from Verificacoes import *
+import os
+
+#--------------------- Turmas com mais alunos do campus --------------------------------#
+def TurmaCheia(conexao, cur):
+    print
+
+
+#--------------------- Quantidade de professores ativos em cada curso --------------------------------#
+def ProfsAtivos(conexao, cur):
+    print
+
+
+#--------------------- Média salarial dos professores--------------------------------#
+def MediaSalarial(conexao, cur):
+    print
+
+
+#--------------------- Jubilados --------------------------------#
+def Jubilados(conexao, cur):
+    print
+
+
+#--------------------- Folha de pagamento mensal --------------------------------#
+def FolhaDePagamento(conexao, cur):
+    print
+
+
+#--------------------- Média final das disciplinas de uma professor --------------------------------#
+def MediaFinal(conexao, cur):
+    print
+
+
+#--------------------- Em quantos cursos cada professor trabalha --------------------------------#
+def CursosPorProf(conexao, cur):
+    print
+
+
+
+#--------------------- Professor mais antigo --------------------------------#
+def ProfAntigo(conexao, cur):
+    print
+
+
+#--------------------- Número total de alunos por curso --------------------------------#
+def AlunoPorCurso(conexao, cur):
+    print
+
+
+#--------------------- Disciplina com a maior taxa --------------------------------#
+def TaxaDisciplina(conexao, cur):
+    print
