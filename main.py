@@ -2,6 +2,7 @@ from getpass import getpass
 from mysql.connector import connect, Error
 import mysql.connector as mysql
 from Cadastro.MenuCadastro import *
+from Notas.Notas import *
 import os
 
 #-------------- se conectando ao mysql --------------------#
@@ -28,8 +29,7 @@ while(escolha_inicial != 0):
         Cadastro(conexao, cur) #leva ao menu dos cadastros
  
     if(escolha_inicial == 2):
-        #Notas(conexao, cur) #chama a função das notas
-        print("opção 2")
+        Notas(conexao, cur) #chama a função das notas
 
     if(escolha_inicial == 3):
         #Informacoes(conexao, cur) #chama a função das informações
