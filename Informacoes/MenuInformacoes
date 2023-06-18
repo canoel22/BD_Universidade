@@ -2,7 +2,7 @@ from Informacoes.Informacoes import *
 import os
 
 #--------------------- menu de cadastros --------------------------------#
-def Cadastro(conexao, cur):
+def Informacoes(conexao, cur):
     escolha_usuario = 1
     while(escolha_usuario != 0):
         os.system('clear')

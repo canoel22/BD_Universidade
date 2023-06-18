@@ -1,5 +1,4 @@
 from getpass import getpass
-from Cadastro.MenuCadastro import *
 from Verificacoes import *
 import os
 

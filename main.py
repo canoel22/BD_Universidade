@@ -3,6 +3,8 @@ from mysql.connector import connect, Error
 import mysql.connector as mysql
 from Cadastro.MenuCadastro import *
 from Notas.Notas import *
+from Informacoes.MenuInformacoes import *
+from Incricoes.MenuInscricoes import *
 import os
 
 #-------------- se conectando ao mysql --------------------#
@@ -23,6 +25,7 @@ while(escolha_inicial != 0):
     print("1. Cadastro")
     print("2. Lançar notas")
     print("3. Informações sobre a universidade")
+    print("4. Gerenciamento de inscrições em disciplinas")
         
     escolha_inicial = int(input("\nDigite sua escolha: "))
     if(escolha_inicial == 1):
@@ -32,8 +35,11 @@ while(escolha_inicial != 0):
         Notas(conexao, cur) #chama a função das notas
 
     if(escolha_inicial == 3):
-        #Informacoes(conexao, cur) #chama a função das informações
-        print("opção 3")
+        Informacoes(conexao, cur) #chama a função das informações
+
+    if(escolha_inicial == 4):
+        Incricoes(conexao, cur) #chama a função das informações
+
 
 #-------------- encerra a conexão ao msql --------------------#
 cur.close()

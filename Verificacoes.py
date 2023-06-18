@@ -56,6 +56,22 @@ def VerificaAluno(cur, cpfAluno):
     else:
         return -1 #Retorna -1 se não estiver
     
+    
+#--------------------- verifica se um aluno está ativo --------------------------------#
+
+def VerificaAtividade(cur, cpfAluno):
+    sql = ('''  SELECT ativo
+                FROM alunos
+                WHERE cpf = %d''')
+     
+    cur.execute(sql, (cpfAluno)) #select em todos os cpfs cadastrados
+    cadastrados = cur.fetchall() #Recebe todos os cpfs inscritos na disciplina
+    for linha in cadastrados: 
+        if(linha[0] == "true"): #Verifica se o cpf já está no banco de dados
+            return 0 #Retorna 0 se estiver
+    else:
+        return -1 #Retorna -1 se não estiver
+    
 
 #--------------------- verifica se uma disciplina já foi cadastrado --------------------------------#
 
