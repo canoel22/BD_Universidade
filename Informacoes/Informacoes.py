@@ -84,16 +84,29 @@ def MediaFinal(conexao, cur):
     print("Por favor, informe:\n")
     cpf_professor = input("CPF do professor: ")
 
-    sql = f'''SELECT nome_p, nome_d, AVG(nota) AS media
-    FROM (SELECT professores.nome AS nome_p, cod_disciplina, disciplinas.nome AS nome_d
-    FROM professores INNER JOIN disciplinas
-    ON cpf = '{cpf_professor}') as t INNER JOIN inscritos
-    ON t.cod_disciplina = inscritos.cod_disciplina
+    if(VerificaProf(cur, cpf_professor) == -1): #Verifica se o prof já foi cadastrado (-1 = NÃO)
+        print("\nERRO: Professor não cadastrado!") #Mensagem de erro pra codigo já cadastrado
+        input("Pressione ENTER para voltar.")
+        return
+
+    sql1 = f'''CREATE TEMPORARY TABLE t2 (
+        SELECT professores.nome AS nome_p, cod_disciplina, disciplinas.nome AS nome_d
+        FROM professores INNER JOIN disciplinas
+        ON cpf = '{cpf_professor}'
+    );'''
+
+    sql2 = '''SELECT nome_p, nome_d, AVG(nota) AS media
+    FROM t2 INNER JOIN inscritos
+    ON t2.cod_disciplina = inscritos.cod_disciplina
     GROUP BY nome_p, nome_d;'''
+
+    sql3 = '''DROP table t2'''
     
-    cur.execute(sql)
+    cur.execute(sql1)
+    cur.execute(sql2)
     resultado = cur.fetchall()
     print('\n', tabulate(resultado, headers=[linha[0] for linha in cur.description], tablefmt='psql'), '\n')
+    cur.execute(sql3)
     input("Pressione ENTER para voltar.")
 
 
@@ -103,11 +116,11 @@ def CursosPorProf(conexao, cur):
     print("-> Em quantos cursos cada professor trabalha <-\n")
 
 
-    sql = '''SELECT professores.nome, professores.cpf, COUNT(cod_curso)
+    sql = '''SELECT professores.nome, professores.cpf, COUNT(cursos_disciplinas.cod_curso) AS qtd_cursos
     FROM professores INNER JOIN disciplinas ON professores.cpf = disciplinas.cpf_professor
     INNER JOIN cursos_disciplinas
     GROUP BY professores.nome, professores.cpf
-    ORDER BY qtd_cursos, professor.nome;'''
+    ORDER BY qtd_cursos, professores.nome;'''
 
     cur.execute(sql)
     resultado = cur.fetchall()
