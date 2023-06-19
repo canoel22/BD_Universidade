@@ -11,13 +11,12 @@ def Informacoes(conexao, cur):
         print("1. Turma com mais alunos do campus")
         print("2. Quantidade de professores ativos em cada curso")
         print("3. Média salarial dos professores")
-        print("4. Jubilados")
-        print("5. Folha de pagamento mensal")
-        print("6. Média final das disciplinas de um professor ")
-        print("7. Em quantos cursos cada professor trabalha ")
-        print("8. Professor mais antigo da instituição ")
-        print("9. Número total de alunos por curso ")
-        print("10. Disciplina com maior taxa de aprovação/reprovação ")
+        print("4. Folha de pagamento mensal")
+        print("5. Média final das disciplinas de um professor ")
+        print("6. Em quantos cursos cada professor trabalha ")
+        print("7. Professor mais antigo da instituição ")
+        print("8. Número total de alunos por curso ")
+        print("9. Disciplina com maior taxa de aprovação/reprovação ")
         
         escolha_usuario = int(input("\nDigite sua escolha: "))
         if(escolha_usuario == 1):
@@ -27,16 +26,14 @@ def Informacoes(conexao, cur):
         if(escolha_usuario == 3):
             MediaSalarial(conexao, cur)
         if(escolha_usuario == 4):
-            Jubilados(conexao, cur)
-        if(escolha_usuario == 5):
             FolhaDePagamento(conexao, cur)
-        if(escolha_usuario == 6):
+        if(escolha_usuario == 5):
             MediaFinal(conexao, cur)
-        if(escolha_usuario == 7):
+        if(escolha_usuario == 6):
             CursosPorProf(conexao, cur)
-        if(escolha_usuario == 8):
+        if(escolha_usuario == 7):
             ProfAntigo(conexao, cur)
-        if(escolha_usuario == 9):
+        if(escolha_usuario == 8):
             AlunoPorCurso(conexao, cur)
-        if(escolha_usuario == 10):
+        if(escolha_usuario == 9):
             TaxaDisciplina(conexao, cur)

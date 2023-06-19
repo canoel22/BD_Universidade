@@ -21,18 +21,12 @@ def InscreverAluno(conexao, cur):
         return
         
     if (VerificaInscricao(cur, codDisc, cpfAluno) == -1): #caso seja a primeira inscrição do aluno
-        sql = "INSERT INTO inscritos (cod_disciplina, cpf_aluno, nota, vez) VALUES ( %s, %s, %s, %s)" #Insere na tabela
-        data = (codDisc, cpfAluno, 0, 1) #Utiliza os dados do insert
-        
-        cur.execute(sql, data) #Executa o comando(sql+data)
+        sql = f"INSERT INTO inscritos (cod_disciplina, cpf_aluno, nota, vez) VALUES ( {codDisc}, {cpfAluno}, {0}, {1})" #Insere na tabela
+        cur.execute(sql) #Executa o comando(sql+data)
         conexao.commit() #salva a alteração no banco
     else:
-        sql = ('''  UPDATE inscritos
-                SET vez = vez+1
-                WHERE cod_disciplina == %s AND cpf_aluno == %s ''')
-        data = (codDisc, cpfAluno)
-        
-        cur.execute(sql, data) #Executa o comando(sql+data)
+        sql = f"UPDATE inscritos SET vez = vez+1 WHERE cod_disciplina = {codDisc} AND cpf_aluno = {cpfAluno}"
+        cur.execute(sql) #Executa o comando(sql+data)
         conexao.commit() #salva a alteração no banco
 
     print("\nInscrito com sucesso!")
@@ -62,11 +56,10 @@ def CancelarInscricao(conexao, cur):
         input("Pressione ENTER para voltar.")
         return
 
-    sql = ('''DELETE from inscritos WHERE cod_disciplina == %s AND cpf_aluno == %s ''') 
-    data = (codDisc, cpfAluno)
-    
-    cur.execute(sql, data) #Executa o comando(sql+data)
+    sql = f"DELETE from inscritos WHERE cod_disciplina = {codDisc} AND cpf_aluno = {cpfAluno} "
+    cur.execute(sql) #Executa o comando(sql+data)
     conexao.commit() #salva a alteração no banco
 
     print("\Inscrição cancelada com sucesso!")
+    input("Pressione ENTER para voltar.")
 

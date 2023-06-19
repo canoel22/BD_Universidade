@@ -36,7 +36,7 @@ def Notas(conexao, cur):
         input("Pressione ENTER para voltar.")
         return
 
-    sql = (f"UPDATE inscritos SET nota = {nota} WHERE cpf_aluno = {cpfAluno} AND cod_disciplina = {codDisc} ")
+    sql = f"UPDATE inscritos SET nota = {nota} WHERE cpf_aluno = {cpfAluno} AND cod_disciplina = {codDisc}"
     cur.execute(sql) #Executa o comando(sql+data)
     conexao.commit() #salva a alteração no banco
 
