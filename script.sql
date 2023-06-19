@@ -42,26 +42,26 @@ CREATE TABLE IF NOT EXISTS disciplinas (
 );
 
 CREATE TABLE IF NOT EXISTS alunos (
-    cpf INT(11) PRIMARY KEY AUTO_INCREMENT,
+    cpf VARCHAR(11) PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
     endereco VARCHAR(100) NOT NULL,
     ativo BOOLEAN NOT NULL,
-    cod_disciplina INT NOT NULL,
-    CONSTRAINT cod_disciplina_fk1 FOREIGN KEY (cod_disciplina) REFERENCES disciplinas(cod_disciplina) ON DELETE CASCADE
+    cod_curso INT NOT NULL,
+    CONSTRAINT cod_curso_fk2 FOREIGN KEY (cod_curso) REFERENCES cursos(cod_curso) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS cursos_disciplinas (
     cod_curso INT NOT NULL,
     cod_disciplina INT NOT NULL,
-    CONSTRAINT cod_curso_fk2 FOREIGN KEY (cod_curso) REFERENCES cursos(cod_curso)  ON DELETE CASCADE,
+    CONSTRAINT cod_curso_fk3 FOREIGN KEY (cod_curso) REFERENCES cursos(cod_curso)  ON DELETE CASCADE,
     CONSTRAINT cod_disciplina_fk2 FOREIGN KEY (cod_disciplina) REFERENCES disciplinas(cod_disciplina) ON DELETE CASCADE,
     PRIMARY KEY (cod_curso, cod_disciplina)
 );
 
 CREATE TABLE IF NOT EXISTS inscritos (
     cod_disciplina INT NOT NULL,
-    cpf_aluno INT(11) NOT NULL,
+    cpf_aluno VARCHAR(11) NOT NULL,
     nota FLOAT NOT NULL DEFAULT 0,
     vez INT NOT NULL DEFAULT 1,
     CONSTRAINT cod_disciplina_fk3 FOREIGN KEY (cod_disciplina) REFERENCES disciplinas(cod_disciplina),

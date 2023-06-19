@@ -17,10 +17,8 @@ def CadastroSetor(conexao, cur):
         input("Pressione ENTER para voltar.")
         return
         
-    sql = "INSERT INTO setores (cod_setor, nome) VALUES ( %s, %s)" #Insere na tabela setores
-    data = (codigo, nome) #Utiliza os dados do insert
-    
-    cur.execute(sql, data) #Executa o comando(sql+data)
+    sql = f"INSERT INTO setores (cod_setor, nome) VALUES ({codigo}, '{nome}')" #Insere na tabela
+    cur.execute(sql) #Executa o comando(sql+data)
     conexao.commit() #salva a alteração no banco
 
     print("\nCadastrado com sucesso!")
@@ -35,7 +33,7 @@ def CadastroCurso(conexao, cur):
     print("Por favor, informe:\n")
     
     nome = input("Nome: ") #Recebe o nome
-    codigo = input("Código: ") #Recebe o código do curso
+    codigo = int(input("Código: ")) #Recebe o código do curso
     ano = input("Ano de início: ") # Recebe o ano de início
     
     if(VerificaCurso(cur, codigo) == 0): #Verifica se o curso já foi cadastrado (0 = SIM)
@@ -43,10 +41,8 @@ def CadastroCurso(conexao, cur):
         input("Pressione ENTER para voltar.")
         return
         
-    sql = "INSERT INTO cursos (cod_setor, nome, ano_inicio) VALUES ( %s, %s, %s)" #Insere na tabela setores
-    data = (codigo, nome, ano) #Utiliza os dados do insert
-    
-    cur.execute(sql, data) #Executa o comando(sql+data)
+    sql = f"INSERT INTO cursos (cod_curso, nome, ano_inicio) VALUES ({codigo}, '{nome}', {ano})" #Insere na tabela
+    cur.execute(sql) #Executa o comando(sql+data)
     conexao.commit() #salva a alteração no banco
 
     print("\nCadastrado com sucesso!")
@@ -76,10 +72,8 @@ def CadastroFunc(conexao, cur):
         input("Pressione ENTER para voltar.")
         return
         
-    sql = "INSERT INTO funcionarios (cpf, nome, endereco, salario, cod_setor) VALUES ( %s, %s, %s, %s, %s)" #Insere na tabela setores
-    data = (cpf, nome, endereco, salario, cod_setor) #Utiliza os dados do insert
-
-    cur.execute(sql, data) #Executa o comando(sql+data)
+    sql = f"INSERT INTO funcionarios (cpf, nome, endereco, salario, cod_setor) VALUES ('{cpf}', '{nome}', '{endereco}', {salario}, {cod_setor})" #Insere na tabela
+    cur.execute(sql) #Executa o comando(sql+data)
     conexao.commit() #salva a alteração no banco
 
     print("\nCadastrado com sucesso!")
@@ -111,10 +105,8 @@ def CadastroProf(conexao, cur):
         input("Pressione ENTER para voltar.")
         return
         
-    sql = "INSERT INTO professores (cpf, nome, telefone, endereco, salario, data_contratacao, ativo, cod_curso) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s)" #Insere na tabela setores
-    data = (cpf, nome, endereco, salario, data_contratacao, "Ativo", cod_curso) #Utiliza os dados do insert
-    
-    cur.execute(sql, data) #Executa o comando(sql+data)
+    sql = f"INSERT INTO professores (cpf, nome, telefone, endereco, salario, data_contratacao, ativo, cod_curso) VALUES ('{cpf}', '{nome}', '{telefone}', '{endereco}', {salario}, '{data_contratacao}', {1}, {cod_curso})" #Insere na tabela
+    cur.execute(sql) #Executa o comando(sql+data)
     conexao.commit() #salva a alteração no banco
 
     print("\nCadastrado com sucesso!")
@@ -132,17 +124,21 @@ def CadastroAluno(conexao, cur):
     cpf = input("CPF: ") #Recebe o código do curso
     telefone = input("Telefone: ") #Recebe o telefone
     endereco = input("Endereço: ") # Recebe o endereço
+    curso = int(input("Código do curso: ")) # Recebe o curso
 
     
     if(VerificaFunc(cur, cpf) == 0): #Verifica se o curso já foi cadastrado (0 = SIM)
         print("\nERRO: CPF já cadastrado!") #Mensagem de erro pra codigo já cadastrado
         input("Pressione ENTER para voltar.")
         return
-        
-    sql = "INSERT INTO alunos (cpf, nome, telefone, endereco, ativo) VALUES ( %s, %s, %s, %s, %s)" #Insere na tabela setores
-    data = (cpf, nome, endereco, "Ativo") #Utiliza os dados do insert
     
-    cur.execute(sql, data) #Executa o comando(sql+data)
+    if(VerificaCurso(cur, curso) == -1): #Verifica se o curso já foi cadastrado (-1 = NÃO)
+        print("\nERRO: Curso não cadastrado!") #Mensagem de erro pra curso não encontrado
+        input("Pressione ENTER para voltar.")
+        return
+        
+    sql = f"INSERT INTO alunos (cpf, nome, telefone, endereco, ativo, cod_curso) VALUES ('{cpf}', '{nome}', '{telefone}', '{endereco}', {1}, {curso})" #Insere na tabela
+    cur.execute(sql) #Executa o comando(sql+data)
     conexao.commit() #salva a alteração no banco
 
     print("\nCadastrado com sucesso!")
@@ -165,10 +161,9 @@ def CadastroDisc(conexao, cur):
         input("Pressione ENTER para voltar.")
         return
     
-    sql = "INSERT INTO disciplinas (cod_disc, nome, cpfProf) VALUES ( %s, %s, %s)" #Insere na tabela setores
-    data = (cod_disc, nome, cpfProf) #Utiliza os dados do insert
-    
-    cur.execute(sql, data) #Executa o comando(sql+data)
+
+    sql = f"INSERT INTO disciplinas (cod_disciplina, nome, cpf_professor) VALUES ({cod_disc}, '{nome}', '{cpfProf}')" #Insere na tabela
+    cur.execute(sql) #Executa o comando(sql+data)
     conexao.commit() #salva a alteração no banco
 
     print("\nCadastrado com sucesso!")

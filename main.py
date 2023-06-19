@@ -4,7 +4,7 @@ import mysql.connector as mysql
 from Cadastro.MenuCadastro import *
 from Notas.Notas import *
 from Informacoes.MenuInformacoes import *
-from Incricoes.MenuInscricoes import *
+from Inscricoes.MenuInscricoes import *
 import os
 
 #-------------- se conectando ao mysql --------------------#
@@ -35,10 +35,10 @@ while(escolha_inicial != 0):
         Notas(conexao, cur) #chama a função das notas
 
     if(escolha_inicial == 3):
-        Informacoes(conexao, cur) #chama a função das informações
+        Informacoes(conexao, cur) #chama o menu das informações
 
     if(escolha_inicial == 4):
-        Incricoes(conexao, cur) #chama a função das informações
+        Inscricoes(conexao, cur) #chama o menu de gerenciamento de inscrição
 
 
 #-------------- encerra a conexão ao msql --------------------#

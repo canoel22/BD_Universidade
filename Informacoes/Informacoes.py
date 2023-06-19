@@ -1,52 +1,52 @@
 from getpass import getpass
+from tabulate import tabulate
 from Informacoes.MenuInformacoes import *
 from Verificacoes import *
 import os
 
 #--------------------- Turmas com mais alunos do campus --------------------------------#
 def TurmaCheia(conexao, cur):
-    print
+    os.system('clear') #Limpa a tela
 
 
 #--------------------- Quantidade de professores ativos em cada curso --------------------------------#
 def ProfsAtivos(conexao, cur):
-    print
+    os.system('clear') #Limpa a tela
 
 
 #--------------------- Média salarial dos professores--------------------------------#
 def MediaSalarial(conexao, cur):
-    print
-
+    os.system('clear')
+    print("-> Média salarial dos professores <-\n")
 
 #--------------------- Jubilados --------------------------------#
 def Jubilados(conexao, cur):
-    print
+    os.system('clear') #Limpa a tela
 
 
 #--------------------- Folha de pagamento mensal --------------------------------#
 def FolhaDePagamento(conexao, cur):
-    print
+    os.system('clear') #Limpa a tela
 
 
 #--------------------- Média final das disciplinas de uma professor --------------------------------#
 def MediaFinal(conexao, cur):
-    print
+    os.system('clear') #Limpa a tela
 
 
 #--------------------- Em quantos cursos cada professor trabalha --------------------------------#
 def CursosPorProf(conexao, cur):
-    print
-
-
+    os.system('clear') #Limpa a tela
 
 #--------------------- Professor mais antigo --------------------------------#
 def ProfAntigo(conexao, cur):
-    print
+    os.system('clear')
+
 
 
 #--------------------- Número total de alunos por curso --------------------------------#
 def AlunoPorCurso(conexao, cur):
-    print
+    os.system('clear') #Limpa a tela
 
 
 #--------------------- Disciplina com a maior taxa --------------------------------#

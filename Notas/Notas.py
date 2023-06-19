@@ -2,7 +2,7 @@ from getpass import getpass
 from Verificacoes import *
 import os
 
-#--------------------- cadastro de um setor --------------------------------#
+#--------------------- lançamento de notas --------------------------------#
 def Notas(conexao, cur):
     os.system('clear') #Limpa a tela
     print("-> Lançamento de notas <-\n")
@@ -36,10 +36,8 @@ def Notas(conexao, cur):
         input("Pressione ENTER para voltar.")
         return
 
-    sql = ("UPDATE incritos SET nota = %s WHERE cpf_aluno = %s AND cod_disciplina = %d ")
-    data = (nota, cpfAluno, codDisc)
-
-    cur.execute(sql, data) #Executa o comando(sql+data)
+    sql = (f"UPDATE inscritos SET nota = {nota} WHERE cpf_aluno = {cpfAluno} AND cod_disciplina = {codDisc} ")
+    cur.execute(sql) #Executa o comando(sql+data)
     conexao.commit() #salva a alteração no banco
 
     print("\nCadastrado com sucesso!")

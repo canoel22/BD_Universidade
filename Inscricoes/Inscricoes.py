@@ -35,7 +35,7 @@ def InscreverAluno(conexao, cur):
         cur.execute(sql, data) #Executa o comando(sql+data)
         conexao.commit() #salva a alteração no banco
 
-    print("\Inscrito com sucesso!")
+    print("\nInscrito com sucesso!")
     input("Pressione ENTER para voltar.")
 
 
@@ -62,21 +62,11 @@ def CancelarInscricao(conexao, cur):
         input("Pressione ENTER para voltar.")
         return
 
-    if(): ############################################# precisa de um if que verifique a qtd de vezes fazendo
-        sql = ('''  UPDATE inscritos
-                SET vez = vez-1
-                WHERE cod_disciplina == %s AND cpf_aluno == %s ''') #caso não seja a primeira inscrição do aluno na disciplina
-        data = (codDisc, cpfAluno)
-        
-        cur.execute(sql, data) #Executa o comando(sql+data)
-        conexao.commit() #salva a alteração no banco
-    else:
-        sql = ('''DELETE inscritos
-                WHERE cod_disciplina == %s AND cpf_aluno == %s ''') #caso seja a primeira inscrição do aluno na disciplina
-        data = (codDisc, cpfAluno)
-        
-        cur.execute(sql, data) #Executa o comando(sql+data)
-        conexao.commit() #salva a alteração no banco
+    sql = ('''DELETE from inscritos WHERE cod_disciplina == %s AND cpf_aluno == %s ''') 
+    data = (codDisc, cpfAluno)
+    
+    cur.execute(sql, data) #Executa o comando(sql+data)
+    conexao.commit() #salva a alteração no banco
 
     print("\Inscrição cancelada com sucesso!")
 
