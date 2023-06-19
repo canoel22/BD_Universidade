@@ -21,7 +21,7 @@ def VerificaCurso(cur, codigo):
 #--------------------- verifica se um funcionario já foi cadastrado --------------------------------#
 
 def VerificaFunc(cur, cpf):
-    cur.execute(f"SELECT cpf FROM funcionarios WHERE cpf = {cpf}") #select em todos os cpf cadastrados
+    cur.execute(f"SELECT cpf FROM funcionarios WHERE cpf = '{cpf}'") #select em todos os cpf cadastrados
     cpf_cadastrados = cur.fetchall() #Recebe todos os cpf cadastrados
     if len(cpf_cadastrados) == 1:
         return 0
@@ -31,7 +31,7 @@ def VerificaFunc(cur, cpf):
 #--------------------- verifica se um professor já foi cadastrado --------------------------------#
 
 def VerificaProf(cur, cpfProf):
-    cur.execute(f"SELECT cpf FROM professores WHERE cpf = {cpfProf}") #select em todos os cpf cadastrados
+    cur.execute(f"SELECT cpf FROM professores WHERE cpf = '{cpfProf}'") #select em todos os cpf cadastrados
     cpf_cadastrados = cur.fetchall() #Recebe todos os cpf cadastrados
     if len(cpf_cadastrados) == 1:
         return 0
@@ -42,7 +42,7 @@ def VerificaProf(cur, cpfProf):
 #--------------------- verifica se um aluno já foi cadastrado --------------------------------#
 
 def VerificaAluno(cur, cpfAluno):
-    cur.execute(f"SELECT cpf FROM alunos WHERE cpf = {cpfAluno}") #select em todos os cpf cadastrados
+    cur.execute(f"SELECT cpf FROM alunos WHERE cpf = '{cpfAluno}'") #select em todos os cpf cadastrados
     cpf_cadastrados = cur.fetchall() #Recebe todos os cpf cadastrados
     if len(cpf_cadastrados) == 1:
         return 0
@@ -53,7 +53,7 @@ def VerificaAluno(cur, cpfAluno):
 #--------------------- verifica se um aluno está ativo --------------------------------#
 
 def VerificaAtividade(cur, cpfAluno):
-    cur.execute(f"SELECT ativo FROM alunos WHERE cpf = {cpfAluno}") #select em todos os cpfs cadastrados
+    cur.execute(f"SELECT ativo FROM alunos WHERE cpf = '{cpfAluno}'") #select em todos os cpfs cadastrados
     cpf_cadastrados = cur.fetchall() #Recebe todos os cpfs inscritos na disciplina
     if len(cpf_cadastrados) == 1:
         return 0
@@ -75,7 +75,7 @@ def VerificaDisciplina(cur, codDisc):
 #--------------------- verifica se um aluno foi inscrito na disciplina --------------------------------#
 
 def VerificaInscricao(cur, codDisc, cpfAluno):
-    cur.execute(f"SELECT cpf_aluno FROM inscritos WHERE cod_disciplina = {codDisc} AND cpf_aluno={cpfAluno}") #select em todos os cpfs cadastrados
+    cur.execute(f"SELECT cpf_aluno FROM inscritos WHERE cod_disciplina = {codDisc} AND cpf_aluno='{cpfAluno}'") #select em todos os cpfs cadastrados
     cpfs_cadastrados = cur.fetchall() #Recebe todos os cpfs inscritos na disciplina
     if len(cpfs_cadastrados) == 1:
         return 0

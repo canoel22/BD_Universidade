@@ -18,8 +18,10 @@ def TurmaCheia(conexao, cur):
         ON inscritos.cod_disciplina = disciplinas.cod_disciplina
         GROUP BY nome);'''
     
-    resultado = cur.execute(sql)
-    print(resultado)
+    cur.execute(sql)
+    resultado = cur.fetchall()
+
+    print('\n', tabulate(resultado, headers=[linha[0] for linha in cur.description], tablefmt='psql'), '\n')
     input("Pressione ENTER para voltar.")
 
 
@@ -34,8 +36,10 @@ def ProfsAtivos(conexao, cur):
     GROUP BY cursos.cod_curso, cursos.nome
     ORDER BY cursos.cod_curso;'''
 
-    resultado = cur.execute(sql)
-    print(resultado)
+    cur.execute(sql)
+    resultado = cur.fetchall()
+
+    print('\n', tabulate(resultado, headers=[linha[0] for linha in cur.description], tablefmt='psql'), '\n')
     input("Pressione ENTER para voltar.")
 
 
@@ -49,8 +53,10 @@ def MediaSalarial(conexao, cur):
     GROUP BY cursos.cod_curso, cursos.nome
     ORDER BY cursos.cod_curso;'''
 
-    resultado = cur.execute(sql)
-    print(resultado)
+    cur.execute(sql)
+    resultado = cur.fetchall()
+
+    print('\n', tabulate(resultado, headers=[linha[0] for linha in cur.description], tablefmt='psql'), '\n')
     input("Pressione ENTER para voltar.")
 
 
@@ -63,8 +69,10 @@ def FolhaDePagamento(conexao, cur):
     FROM setores INNER JOIN funcionarios ON setores.cod_setor = funcionarios.cod_setor
     GROUP BY setores.cod_setor, setores.nome ORDER BY SUM(funcionarios.salario) DESC;'''
 
-    resultado = cur.execute(sql)
-    print(resultado)
+    cur.execute(sql)
+    resultado = cur.fetchall()
+
+    print('\n', tabulate(resultado, headers=[linha[0] for linha in cur.description], tablefmt='psql'), '\n')
     input("Pressione ENTER para voltar.")
 
 
@@ -73,11 +81,27 @@ def MediaFinal(conexao, cur):
     os.system('clear') #Limpa a tela
     print("-> Média final das disciplinas de um professor <-\n")
 
+    print("Por favor, informe:\n")
+    cpf_professor = input("CPF do professor: ")
+
+    sql = f'''SELECT nome_p, nome_d, AVG(nota) AS media
+    FROM (SELECT professores.nome AS nome_p, cod_disciplina, disciplinas.nome AS nome_d
+    FROM professores INNER JOIN disciplinas
+    ON cpf = '{cpf_professor}') as t INNER JOIN inscritos
+    ON t.cod_disciplina = inscritos.cod_disciplina
+    GROUP BY nome_p, nome_d;'''
+    
+    cur.execute(sql)
+    resultado = cur.fetchall()
+    print('\n', tabulate(resultado, headers=[linha[0] for linha in cur.description], tablefmt='psql'), '\n')
+    input("Pressione ENTER para voltar.")
+
 
 #--------------------- Em quantos cursos cada professor trabalha --------------------------------#
 def CursosPorProf(conexao, cur):
     os.system('clear') #Limpa a tela
     print("-> Em quantos cursos cada professor trabalha <-\n")
+
 
     sql = '''SELECT professores.nome, professores.cpf, COUNT(cod_curso)
     FROM professores INNER JOIN disciplinas ON professores.cpf = disciplinas.cpf_professor
@@ -85,8 +109,10 @@ def CursosPorProf(conexao, cur):
     GROUP BY professores.nome, professores.cpf
     ORDER BY qtd_cursos, professor.nome;'''
 
-    resultado = cur.execute(sql)
-    print(resultado)
+    cur.execute(sql)
+    resultado = cur.fetchall()
+    print('\n', tabulate(resultado, headers=[linha[0] for linha in cur.description], tablefmt='psql'), '\n')
+   
     input("Pressione ENTER para voltar.")
 
 #--------------------- Professor mais antigo --------------------------------#
@@ -101,8 +127,10 @@ def ProfAntigo(conexao, cur):
         FROM professores AS prof2
         WHERE prof1.cpf <> prof2.cpf);'''
     
-    resultado = cur.execute(sql)
-    print(resultado)
+    cur.execute(sql)
+    resultado = cur.fetchall()
+
+    print('\n', tabulate(resultado, headers=[linha[0] for linha in cur.description], tablefmt='psql'), '\n')
     input("Pressione ENTER para voltar.")
 
 
@@ -117,12 +145,15 @@ def AlunoPorCurso(conexao, cur):
     GROUP BY cursos.cod_curso, cursos.nome
     ORDER BY COUNT(alunos.cpf);'''
 
-    resultado = cur.execute(sql)
-    print(resultado)
-    input("Pressione ENTER para voltar.")    
+    cur.execute(sql)
+    resultado = cur.fetchall()
+
+    print('\n', tabulate(resultado, headers=[linha[0] for linha in cur.description], tablefmt='psql'), '\n')
+    input("Pressione ENTER para voltar.")   
 
 
 #--------------------- Disciplina com a maior taxa --------------------------------#
 def TaxaDisciplina(conexao, cur):
     os.system('clear') #Limpa a tela
     print("-> Disciplina com a maior taxa de aprovação/reprovação <-\n")
+    input("Pressione ENTER para voltar.")

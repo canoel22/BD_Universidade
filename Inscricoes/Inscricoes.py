@@ -21,11 +21,11 @@ def InscreverAluno(conexao, cur):
         return
         
     if (VerificaInscricao(cur, codDisc, cpfAluno) == -1): #caso seja a primeira inscrição do aluno
-        sql = f"INSERT INTO inscritos (cod_disciplina, cpf_aluno, nota, vez) VALUES ( {codDisc}, {cpfAluno}, {0}, {1})" #Insere na tabela
+        sql = f"INSERT INTO inscritos (cod_disciplina, cpf_aluno, nota, vez) VALUES ( {codDisc}, '{cpfAluno}', {0}, {1})" #Insere na tabela
         cur.execute(sql) #Executa o comando(sql+data)
         conexao.commit() #salva a alteração no banco
     else:
-        sql = f"UPDATE inscritos SET vez = vez+1 WHERE cod_disciplina = {codDisc} AND cpf_aluno = {cpfAluno}"
+        sql = f"UPDATE inscritos SET vez = vez+1 WHERE cod_disciplina = {codDisc} AND cpf_aluno = '{cpfAluno}'"
         cur.execute(sql) #Executa o comando(sql+data)
         conexao.commit() #salva a alteração no banco
 
@@ -56,7 +56,7 @@ def CancelarInscricao(conexao, cur):
         input("Pressione ENTER para voltar.")
         return
 
-    sql = f"DELETE from inscritos WHERE cod_disciplina = {codDisc} AND cpf_aluno = {cpfAluno} "
+    sql = f"DELETE from inscritos WHERE cod_disciplina = {codDisc} AND cpf_aluno = '{cpfAluno}' "
     cur.execute(sql) #Executa o comando(sql+data)
     conexao.commit() #salva a alteração no banco
 
